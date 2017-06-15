@@ -18,6 +18,15 @@ function greeting(language) {
   //language: 'English' -> 'Hello!'
   //language: 'Spanish' -> 'Hola!'
   //if language is undefined return 'Hello!'
+  if(language === 'German') {
+    return 'Guten Tag!';
+  } else if (language === 'English'){
+    return 'Hello!';
+  } else if (language === 'Spanish') {
+    return 'Hola!';
+  } else {
+    return 'Hello!';
+  }
 }
 
 function isTenOrFive(num) {
@@ -46,6 +55,13 @@ function isInteger(num) {
   //-10 -> true
   //otherwise return false
   //hint: you can solve this using Math.floor
+  if (num == 0) {
+    return true;
+  } else if (Math.floor(num) / num == 1) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function fizzBuzz(num) {
@@ -53,6 +69,15 @@ function fizzBuzz(num) {
   //if num is divisible by 5 return 'buzz'
   //if num is divisible by 3 & 5 return 'fizzbuzz'
   //otherwise return num
+  if (num % 15 == 0) {
+    return 'fizzbuzz';
+  } else if (num % 3 == 0) {
+    return 'fizz';
+  } else if (num % 5 == 0) {
+    return 'buzz';
+  } else {
+    return num;
+  }
 }
 
 function isPrime(num) {
@@ -61,17 +86,30 @@ function isPrime(num) {
   //hint: a prime number is only evenly divisible by itself and 1
   //hint2: you can solve this using a for loop
   //note: 0 and 1 are NOT considered prime numbers
+if(num == 1 || num == 0) {
+	return false;
+} else {
+	for(var i = 2; i < num; i++){
+		if(Number.isInteger(num / i)){
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
 }
 
 function returnFirst(arr) {
   //return the first item from the array
+  return arr[0];
 }
 
 function returnLast(arr) {
   //return the last item of the array
   // version 1
-  // return arr[arr.length - 1];
+  return arr[arr.length - 1];
   // version 2
+  // return arr[]
 }
 
 function getArrayLength(arr) {
@@ -83,6 +121,9 @@ function incrementByOne(arr) {
   //arr is an array of integers
   //increase each integer by one
   //return the array
+for(var i = 0; i < arr.length; i++){
+	arr[i]+=1;
+  }  return arr;
 }
 
 function addItemToArray(arr, item) {
@@ -105,26 +146,49 @@ function wordsToSentence(words) {
   //return a string that is all of the words concatenated together
   //spaces need to be between each word
   //example: ['Hello', 'world!'] -> 'Hello world!'
+  var sent = '';
+  for(var i = 0; i < words.length; i++){
+    sent += words[i] + ' ';
+  }  return sent.trim();
 }
 
 function contains(arr, item) {
   //check to see if item is inside of arr
-  //return true if it is, otherwise return false
+  //return true if i{t is, otherwise return false
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i] == item){
+      return true;
+    }
+  } return false;
 }
 
 function addNumbers(numbers) {
   //numbers is an array of integers.
   //add all of the integers and return the value
+  var total = 0;
+  for(var i = 0; i < numbers.length; i++){
+    total += numbers[i];
+  } return total;
 }
 
 function averageTestScore(testScores) {
   //testScores is an array.  Iterate over testScores and compute the average.
   //return the average
+  var total = 0;
+  for(var i = 0; i < testScores.length; i++){
+    total += testScores[i];
+  } return total / testScores.length;
 }
 
 function largestNumber(numbers) {
   //numbers is an array of integers
   //return the largest integer
+  var start = numbers[0];
+  for(var i = 1; i < numbers.length; i++){
+    if(numbers[i] > start){
+      start = numbers[i];
+    }
+  } return start;
 }
 
 function makeCat(name, age) {
@@ -132,61 +196,92 @@ function makeCat(name, age) {
   //add an age property to the object with the value set to the age argument
   //add a method called meow that returns the string 'Meow!'
   //return the object
+  name = {
+    name: name,
+    age: age,
+    meow: function(){
+      return 'Meow!';
+  }
+    };
+    return name;
 }
 
 function addProperty(object, property) {
   //add the property to the object with a value of null
   //return the object
   //note: the property name is NOT 'property'.  The name is the value of the argument called property (a string)
+  object[property] = null;
+  return object;
 }
 
 function invokeMethod(object, method) {
   //method is a string that contains the name of a method on the object
   //invoke this method
   //nothing needs to be returned
+  object[method]();
 }
 
 function multiplyMysteryNumberByFive(mysteryNumberObject) {
   //mysteryNumberObject has a property called mysteryNumber
   //multiply the mysteryNumber property by 5 and return the product
+  return mysteryNumberObject.mysteryNumber * 5;
 }
 
 function deleteProperty(object, property) {
   //remove the property from the object
   //return the object
+  delete object[property];
+  return object;
 }
 
 function newUser(name, email, password) {
   //create a new object with properties matching the arguments passed in.
   //return the new object
+  var obj = {
+    name: name,
+    email: email,
+    password: password
+  };
+  return obj;
 }
 
 function hasEmail(user) {
   //return true if the user has a value for the property 'email'
   //otherwise return false
+  if (user.email === '' || user.hasOwnProperty('email') === false){ 
+return false;
+    } else {
+      return true;
+    }
 }
 
 function hasProperty(object, property) {
   //return true if the object has the value of the property argument
   //property is a string
   //otherwise return false
+  return object.hasOwnProperty(property);
 }
 
 function verifyPassword(user, password) {
   //check to see if the provided password matches the password property on the user object
   //return true if they match
   //otherwise return false
+  return (user.password === password);
 }
 
 function updatePassword(user, newPassword) {
   //replace the existing password on the user object with the value of newPassword
   //return the object
+  user.password = newPassword;
+  return user;
 }
 
 function addFriend(user, newFriend) {
   //user has a property called friends that is an array
   //add newFriend to the end of the friends array
   //return the user object
+  user.friends.push(newFriend);
+  return user;
 }
 
 function setUsersToPremium(users) {
@@ -194,6 +289,10 @@ function setUsersToPremium(users) {
   //each user object has the property 'isPremium'
   //set each user's isPremium property to true
   //return the users array
+  for(var i = 0; i < users.length; i++){
+    users[i].isPremium = true;
+  }
+  return users;
 }
 
 function sumUserPostLikes(user) {
@@ -202,6 +301,10 @@ function sumUserPostLikes(user) {
   //each post object has an integer property called 'likes'
   //sum together the likes from all the post objects
   //return the sum
+  var total = 0;
+  for(var i = 0; i < user.posts.length; i++){
+    total += user.posts[i].likes;
+  }return total;
 }
 
 function addCalculateDiscountPriceMethod(storeItem) {
@@ -212,7 +315,12 @@ function addCalculateDiscountPriceMethod(storeItem) {
   //price -> 20
   //discountPercentage -> .2
   //discountPrice = 20 - (20 * .2)
+  storeItem.calculateDiscountPrice = function(){
+        return storeItem.price - (storeItem.price * storeItem.discountPercentage);
+  }; return storeItem;
 }
+
+
 
 
 //Do not modify code below this line.
